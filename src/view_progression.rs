@@ -4,8 +4,8 @@ use crate::{score::score_placement, types::GameProgression};
 
 const GRID_WIDTH: usize = 13;
 const GRID_SPACING: usize = 1;
-const COLORS: [&str; 6] = ["red", "green", "yellow", "blue", "magenta", "white"];
-const MARKDOWN_COLOR_CLASSES: [&str; 6] = ["red", "green", "blue", "orange", "purple", "black"];
+const COLORS: [&str; 5] = ["red", "green", "yellow", "blue", "magenta"];
+const MARKDOWN_COLOR_CLASSES: [&str; 5] = ["red", "green", "blue", "orange", "purple"];
 
 fn colored_text(text: &str, color_idx: usize, bold: bool) -> String {
     let color_name = COLORS[color_idx % COLORS.len()];
@@ -88,7 +88,7 @@ where
 
             let left = style_function(
                 &format!("{}/{}", count, m + 1),
-                color.saturating_sub(m) % 5,
+                (((color as i8) - m as i8) % 5) as usize,
                 place_tile,
             );
 
@@ -97,7 +97,7 @@ where
                 let cell = if n == color && place_tile {
                     score += score_placement(&wall, m, n);
                     wall[m][n] = true;
-                    style_function("X", color.saturating_sub(m) % 5, true)
+                    style_function("X", (((color as i8) - m as i8) % 5) as usize, true)
                 } else {
                     grid[m][n + 1].clone()
                 };
