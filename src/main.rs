@@ -13,13 +13,14 @@ use dfs::get_all_scores;
 
 
 fn main() {
-    let progressions: Vec<GameProgression> = get_all_scores(5);
+    let n_rounds: i8 = 5;
+    let progressions: Vec<GameProgression> = get_all_scores(n_rounds);
 
-    if let Some(best) = progressions.iter().max_by_key(|gp| gp.score) {
-        println!("{}", progressions.len());
-        println!("{}", styled_grid_progression(best, true));
-    } else {
-        println!("No scores available");
-    }
+    // if let Some(best) = progressions.iter().max_by_key(|gp| gp.score) {
+    //     println!("{}", progressions.len());
+    //     println!("{}", styled_grid_progression(best, false));
+    // } else {
+    //     println!("No scores available");
+    // }
 }
 
