@@ -4,8 +4,8 @@ use crate::{score::score_placement, types::GameProgression};
 
 const GRID_WIDTH: usize = 13;
 const GRID_SPACING: usize = 1;
-const COLORS: [&str; 5] = ["red", "green", "yellow", "blue", "magenta"];
-const MARKDOWN_COLOR_CLASSES: [&str; 5] = ["red", "green", "blue", "orange", "purple"];
+const COLORS: [&str; 6] = ["red", "green", "yellow", "blue", "magenta", "pink"];
+const MARKDOWN_COLOR_CLASSES: [&str; 6] = ["red", "green", "blue", "orange", "purple", "pink"];
 
 fn colored_text(text: &str, color_idx: usize, bold: bool) -> String {
     let color_name = COLORS[color_idx % COLORS.len()];
@@ -29,7 +29,7 @@ fn md_color(text: &str, color_idx: usize, bold: bool) -> String {
 }
 
 fn empty_grid() -> Vec<Vec<String>> {
-    vec![vec![" ".to_string(); 6]; 5]
+    vec![vec![" ".to_string(); 6]; 6]
 }
 
 fn mark_placements_stale(grid: &Vec<Vec<String>>) -> Vec<Vec<String>> {
@@ -52,7 +52,7 @@ where
     let mut res: Vec<Vec<Vec<String>>> = Vec::new();
     let mut labels: Vec<String> = Vec::new();
     let mut grid = empty_grid();
-    let mut wall = [[false; 5]; 5];
+    let mut wall = [[false; 6]; 6];
     let mut score = 0;
 
     let steps = &progression.patterns;
@@ -87,7 +87,7 @@ where
 
             let left = style_function(
                 &format!("{}/{}", count, m + 1),
-                (color + 5 - m % 5) % 5,
+                (color + 6 - m % 6) % 6,
                 place_tile,
             );
 
@@ -96,7 +96,7 @@ where
                 let cell = if n == color && place_tile {
                     score += score_placement(&wall, m, n);
                     wall[m][n] = true;
-                    style_function("X", (color + 5 - m % 5) % 5, true)
+                    style_function("X", (color + 6 - m % 6) % 6, true)
                 } else {
                     grid[m][n + 1].clone()
                 };

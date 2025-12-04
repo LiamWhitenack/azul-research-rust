@@ -29,7 +29,7 @@ pub fn get_all_scores(n_rounds: usize) -> Vec<GameProgression> {
 
         // Unfinished now stores GameProgression structs
         let mut unfinished: VecDeque<GameProgression> = VecDeque::new();
-        unfinished.push_back(GameProgression::new(0, initial_patterns, [[false; 5]; 5]));
+        unfinished.push_back(GameProgression::new(0, initial_patterns, [[false; 6]; 6]));
 
         // Process BFS level by level
         while !unfinished.is_empty() {

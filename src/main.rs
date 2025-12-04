@@ -17,7 +17,7 @@ fn main() {
 
     if let Some(best) = progressions.iter().max_by_key(|gp| gp.score) {
         println!("{}", progressions.len());
-        println!("{}", styled_grid_progression(best, true));
+        println!("{}", styled_grid_progression(best, false));
     } else {
         println!("No scores available");
     }

@@ -1,5 +1,5 @@
 /// Calculate the score for placing a piece at position (m, n)
-pub fn score_placement(wall: &[[bool; 5]; 5], m: usize, n: usize) -> i8 {
+pub fn score_placement(wall: &[[bool; 6]; 6], m: usize, n: usize) -> i8 {
     if wall[m][n] {
         panic!("A piece has already been placed in that position!");
     }
@@ -9,7 +9,7 @@ pub fn score_placement(wall: &[[bool; 5]; 5], m: usize, n: usize) -> i8 {
     let mut score_column = false;
 
     // Check to the right
-    for ni in (n + 1)..5 {
+    for ni in (n + 1)..6 {
         if !wall[m][ni] {
             break;
         }
@@ -27,7 +27,7 @@ pub fn score_placement(wall: &[[bool; 5]; 5], m: usize, n: usize) -> i8 {
     }
 
     // Check downwards
-    for mi in (m + 1)..5 {
+    for mi in (m + 1)..6 {
         if !wall[mi][n] {
             break;
         }
@@ -52,26 +52,26 @@ pub fn score_placement(wall: &[[bool; 5]; 5], m: usize, n: usize) -> i8 {
 }
 
 /// Calculate the endgame score
-pub fn score_endgame(wall: &[[bool; 5]; 5]) -> i8 {
+pub fn score_endgame(wall: &[[bool; 6]; 6]) -> i8 {
     let mut res = 0;
 
     // Rows
-    for m in 0..5 {
-        if (0..5).all(|n| wall[m][n]) {
+    for m in 0..6 {
+        if (0..6).all(|n| wall[m][n]) {
             res += 2;
         }
     }
 
     // Columns
-    for n in 0..5 {
-        if (0..5).all(|m| wall[m][n]) {
+    for n in 0..6 {
+        if (0..6).all(|m| wall[m][n]) {
             res += 7;
         }
     }
 
     // Diagonals
-    for n in 0..5 {
-        if (0..5).all(|i| wall[i][(n + i) % 5]) {
+    for n in 0..6 {
+        if (0..6).all(|i| wall[i][(n + i) % 6]) {
             res += 10;
         }
     }

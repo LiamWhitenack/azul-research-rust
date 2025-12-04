@@ -2,7 +2,7 @@
 pub struct PatternLine {
     pub count: i8,
     pub color: i8,
-    pub potential_colors: [bool; 5],
+    pub potential_colors: [bool; 6],
 }
 
 impl PatternLine {
@@ -10,18 +10,18 @@ impl PatternLine {
         Self {
             count: 0,
             color: -1,
-            potential_colors: [true; 5],
+            potential_colors: [true; 6],
         }
     }
 }
 
 
 #[derive(Copy, Clone, Debug)]
-pub struct PatternLines([PatternLine; 5]);
+pub struct PatternLines([PatternLine; 6]);
 
 impl PatternLines {
     pub fn new() -> Self {
-        Self([PatternLine::new(); 5])
+        Self([PatternLine::new(); 6])
     }
 
     pub fn line(&self, index: usize) -> &PatternLine {
@@ -47,11 +47,11 @@ impl PatternLines {
 pub struct GameProgression {
     pub score: i8,
     pub patterns: Vec<PatternLines>,
-    pub wall: [[bool; 5]; 5],
+    pub wall: [[bool; 6]; 6],
 }
 
 impl GameProgression {
-    pub fn new(score: i8, patterns: Vec<PatternLines>, wall: [[bool; 5]; 5]) -> Self {
+    pub fn new(score: i8, patterns: Vec<PatternLines>, wall: [[bool; 6]; 6]) -> Self {
         Self {
             score,
             patterns,
