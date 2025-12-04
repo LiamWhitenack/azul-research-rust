@@ -16,7 +16,8 @@ fn main() {
     let progressions: Vec<GameProgression> = get_all_scores(5);
 
     if let Some(best) = progressions.iter().max_by_key(|gp| gp.score) {
-        println!("{}", styled_grid_progression(best, false));
+        println!("{}", progressions.len());
+        println!("{}", styled_grid_progression(best, true));
     } else {
         println!("No scores available");
     }

@@ -42,7 +42,6 @@ fn mark_placements_stale(grid: &Vec<Vec<String>>) -> Vec<Vec<String>> {
         .collect()
 }
 
-
 fn make_grids<F>(
     progression: &GameProgression,
     style_function: F,
@@ -88,7 +87,7 @@ where
 
             let left = style_function(
                 &format!("{}/{}", count, m + 1),
-                (((color as i8) - m as i8) % 5) as usize,
+                (color + 5 - m % 5) % 5,
                 place_tile,
             );
 
@@ -97,7 +96,7 @@ where
                 let cell = if n == color && place_tile {
                     score += score_placement(&wall, m, n);
                     wall[m][n] = true;
-                    style_function("X", (((color as i8) - m as i8) % 5) as usize, true)
+                    style_function("X", (color + 5 - m % 5) % 5, true)
                 } else {
                     grid[m][n + 1].clone()
                 };
